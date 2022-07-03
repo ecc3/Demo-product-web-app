@@ -1,3 +1,4 @@
+import cors from "cors";
 import express from "express";
 import { json } from "body-parser";
 import {
@@ -12,6 +13,7 @@ const port = 8080;
 const host = "0.0.0.0";
 const app = express();
 
+app.use(cors());
 app.use(json());
 app.use(express.json());
 
