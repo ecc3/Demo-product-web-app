@@ -1,5 +1,6 @@
 import { Box, List, ListItem, ListItemText } from "@mui/material";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { getAllProducts } from "../Services/api";
 import { MinimalProduct } from "../Types/Product";
 
@@ -12,15 +13,24 @@ export const AllProducts = () => {
       if (products) setAllProducts(products);
     };
     fetchProducts();
-  });
+  }, []);
 
   return (
-    <Box>
+    <Box
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: 1
+      }}
+    >
       <List>
         {allProducts?.map(product => (
-          <ListItem key={product.id}>
-            <ListItemText>{product.name}</ListItemText>
-          </ListItem>
+          <Link to={`/product/${product.id}`} key={product.id}>
+            <ListItem>
+              <ListItemText>{product.name}</ListItemText>
+            </ListItem>
+          </Link>
         ))}
       </List>
     </Box>
