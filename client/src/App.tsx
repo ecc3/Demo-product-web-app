@@ -1,7 +1,11 @@
-import React from "react";
+import { AllProducts } from "./Pages/AllProducts";
 
 function App() {
-  return <div></div>;
+  return (
+    <div>
+      <AllProducts />
+    </div>
+  );
 }
 
 export default App;
