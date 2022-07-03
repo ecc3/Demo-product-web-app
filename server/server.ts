@@ -3,6 +3,7 @@ import { json } from "body-parser";
 import {
   addProduct,
   deleteProductById,
+  getAllProducts,
   getProductById,
   updateProductById
 } from "./controllers/productsController";
@@ -14,6 +15,7 @@ const app = express();
 app.use(json());
 app.use(express.json());
 
+app.get("/api/products", getAllProducts);
 app.get("/api/product/:productId", getProductById);
 app.post("/api/product", addProduct);
 app.put("/api/product/:productId", updateProductById);

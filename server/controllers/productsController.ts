@@ -2,6 +2,15 @@ import { Request, Response } from "express";
 import products from "../Products";
 import { v4 as uuidv4 } from "uuid";
 
+export const getAllProducts = (req: Request, res: Response) => {
+  const productsOverview = products.map(product => ({
+    id: product.id,
+    name: product.name
+  }));
+
+  res.status(200).send({ products: productsOverview });
+};
+
 export const getProductById = (req: Request, res: Response) => {
   const { productId } = req.params;
   const product = products.find(product => product.id === productId);
