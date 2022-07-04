@@ -22,7 +22,6 @@ const setUpProducts: () => Product[] = () => {
   let productsCount = 10;
   while (productsCount > 0) {
     const newProduct = setUpProduct();
-    console.log(newProduct.id);
     products.push(newProduct);
     productsCount--;
   }
