@@ -1,4 +1,4 @@
-import { Product, UpdateProduct } from "../Types/Product";
+import { UpdateProduct } from "../Types/Product";
 
 const apiUrl = "http://0.0.0.0:8080/api";
 
