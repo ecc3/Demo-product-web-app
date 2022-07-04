@@ -42,7 +42,7 @@ export const updateProduct = (
 export const deleteProduct = (productId: string) => {
   return fetch(`${apiUrl}/product/${productId}`, { method: "DELETE" }).then(
     rsp => {
-      if (!rsp.ok) throw new Error("An error occurred fetching the product");
+      if (!rsp.ok) throw new Error("An error occurred deleting the product");
       return rsp.json();
     }
   );
