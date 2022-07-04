@@ -8,16 +8,16 @@ export const getAllProducts = (req: Request, res: Response) => {
     name: product.name
   }));
 
-  res.status(200).send({ products: productsOverview });
+  return res.status(200).send({ products: productsOverview });
 };
 
 export const getProductById = (req: Request, res: Response) => {
   const { productId } = req.params;
   const product = products.find(product => product.id === productId);
 
-  if (product) res.status(200).send({ product });
+  if (product) return res.status(200).send({ product });
   else {
-    res.status(404).send();
+    return res.status(404).send();
   }
 };
 
@@ -26,7 +26,7 @@ export const addProduct = (req: Request, res: Response) => {
   const newProduct = { id: uuidv4(), name, description, price, quantity };
 
   products.push(newProduct);
-  res.status(201).send({ product: newProduct });
+  return res.status(201).send({ product: newProduct });
 };
 
 export const updateProductById = (req: Request, res: Response) => {
@@ -34,7 +34,8 @@ export const updateProductById = (req: Request, res: Response) => {
   const { name, description, price, quantity } = req.body;
   const productToUpdate = products.find(product => product.id === productId);
 
-  if (!name || !description || !price || !quantity) res.status(400).send();
+  if (!name && !description && !price && !quantity)
+    return res.status(400).send();
 
   if (productToUpdate) {
     if (name) productToUpdate.name = name;
@@ -42,9 +43,9 @@ export const updateProductById = (req: Request, res: Response) => {
     if (price) productToUpdate.price = price;
     if (quantity) productToUpdate.quantity = quantity;
 
-    res.status(200).send({ product: productToUpdate });
+    return res.status(200).send({ product: productToUpdate });
   } else {
-    res.status(404).send();
+    return res.status(404).send();
   }
 };
 
@@ -54,8 +55,9 @@ export const deleteProductById = (req: Request, res: Response) => {
 
   if (productIndex >= 0) {
     const deletedProduct = products.splice(productIndex, 1)[0];
-    if (deletedProduct) res.status(200).send({ product: deletedProduct });
+    if (deletedProduct)
+      return res.status(200).send({ product: deletedProduct });
   } else {
-    res.status(404).send();
+    return res.status(404).send();
   }
 };

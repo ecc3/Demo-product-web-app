@@ -16,7 +16,7 @@ export const getProduct = (productId: string) => {
   });
 };
 
-export const addProduct = (product: Product) => {
+export const addProduct = (product: UpdateProduct) => {
   return fetch(`${apiUrl}/product`, {
     method: "POST",
     body: JSON.stringify(product)
@@ -40,8 +40,10 @@ export const updateProduct = (
 };
 
 export const deleteProduct = (productId: string) => {
-  return fetch(`${apiUrl}/product/${productId}`).then(rsp => {
-    if (!rsp.ok) throw new Error("An error occurred fetching the product");
-    return rsp.json();
-  });
+  return fetch(`${apiUrl}/product/${productId}`, { method: "DELETE" }).then(
+    rsp => {
+      if (!rsp.ok) throw new Error("An error occurred fetching the product");
+      return rsp.json();
+    }
+  );
 };
